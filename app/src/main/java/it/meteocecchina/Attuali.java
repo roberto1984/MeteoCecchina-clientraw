@@ -176,6 +176,10 @@ public class Attuali extends Activity {
 
 
             while (line != null){
+                if(i==0){
+                    str[i]=line;
+                    data.setText("Agg alle "+dati[29]+":"+dati[30]+" del "+dati[74]);
+                }
             	if(i==0){
             	    str[i]=line;
                     temperatura.setText(dati[4]);
@@ -242,6 +246,10 @@ public class Attuali extends Activity {
             while (line != null){
                 if(i==0){
                     str[i]=line;
+                    data.setText("Agg alle "+dati[29]+":"+dati[30]+" del "+dati[74]);
+                }
+                if(i==0){
+                    str[i]=line;
                     temperatura.setText(dati[47]);
                 }
                 if(i==0){
@@ -289,6 +297,10 @@ public class Attuali extends Activity {
 
 
             while (line != null){
+                if(i==0){
+                    str[i]=line;
+                    data.setText("Agg alle "+dati[29]+":"+dati[30]+" del "+dati[74]);
+                }
                 if(i==0){
                     str[i]=line;
                     temperatura.setText(dati[46]);

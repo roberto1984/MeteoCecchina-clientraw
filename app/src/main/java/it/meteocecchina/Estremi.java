@@ -148,38 +148,41 @@ public class Estremi extends Activity {
           
     	try {
             // Create a URL for the desired page,posso leggere anche gli htm!
-            URL url = new URL("http://www.meteocecchina.it/android.txt");
+            URL url = new URL("http://www.meteoseano.it/clientrawextra.txt");
+            URL url2 = new URL("http://www.meteoseano.it/clientraw.txt");
 
             // Read all the text returned by the server
             BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+            BufferedReader in2 = new BufferedReader(new InputStreamReader(url2.openStream()));
+
             String[] str= new String[147];
             //StringBuilder sb = new StringBuilder(100);
-            String line;
-            int i=0;
-           line = in.readLine(); // legge una riga del file 
-           //***************INIZIO CONDIZIONI IF*************** 
+            String line = in.readLine(); //lettura riga
+            String line2 = in2.readLine(); //lettura riga
+
+            int i = 0;
+            String[] dati = line.split(" "); //split. A questo punto nell'array di stringhe "dati" hai i valori, nel mio caso splittati per "spazio".
+            String[] dati2 = line2.split(" "); //split. A questo punto nell'array di stringhe "dati" hai i valori, nel mio caso splittati per "spazio".
+
+            //***************INIZIO CONDIZIONI IF***************
            if(string =="min_mese"){
            
             while (line != null){
-            	if(i==0){
-            	str[i]=line;
-                data.setText(str[i]);	
-            	}
-            	if(i==41){
-            	str[i]=line;
-                temperatura.setText(str[i]);	
-            	}
-            	if(i==43){
+                if(i==0){
                 str[i]=line;
-                umidita.setText(str[i]);	
+                data.setText("Agg alle "+dati2[29]+":"+dati2[30]+" del "+dati2[74]);
                 }
-            	if(i==48){
+                if(i==0){
+            	str[i]=line;
+                temperatura.setText(dati[67]);
+            	}
+            	if(i==0){
                     str[i]=line;
-                pressione.setText(str[i]);	
+                pressione.setText(dati[85]);
                 }
-            	if(i==45){
+            	if(i==0){
                     str[i]=line;
-                dewpoint.setText(str[i]);	
+                dewpoint.setText(dati[735]);
                 }
             	
             	
@@ -188,6 +191,7 @@ public class Estremi extends Activity {
             	} 
 
             in.close();
+            umidita.setText("ND");
             ventom.setText("ND");
             ventoDir.setText("ND");
             pioggia.setText("ND");
@@ -198,37 +202,35 @@ public class Estremi extends Activity {
            if(string =="max_mese"){
         	   
         	   while (line != null){
+                if(i==0){
+                    str[i]=line;
+                    data.setText("Agg alle "+dati2[29]+":"+dati2[30]+" del "+dati2[74]);
+                   }
                	if(i==0){
-               	str[i]=line;
-                   data.setText(str[i]);	
+                    str[i]=line;
+                   temperatura.setText(dati[61]);
                	}
-               	if(i==40){
-               	str[i]=line;
-                   temperatura.setText(str[i]);	
-               	}
-               	if(i==42){
+               	if(i==0){
+               	   str[i]=line;
+                   pressione.setText(dati[91]);
+                   }
+               	if(i==0){
                    str[i]=line;
-                   umidita.setText(str[i]);	
+                   Double ventonodi=Double.parseDouble(dati[73]);
+                   ventonodi=ventonodi*1.852;
+                   ventom.setText(String.valueOf(String.format("%.2f", ventonodi)));
                    }
-               	if(i==47){
-                       str[i]=line;
-                   pressione.setText(str[i]);	
+               	if(i==0){
+                   str[i]=line;
+                   dewpoint.setText(dati[729]);
                    }
-               	if(i==46){
-                       str[i]=line;
-                   ventom.setText(str[i]);	
+               	if(i==0){
+                   str[i]=line;
+                   heatIndex.setText(dati[175]);
                    }
-               	if(i==44){
-                       str[i]=line;
-                   dewpoint.setText(str[i]);	
-                   }
-               	if(i==50){
-                       str[i]=line;
-                   heatIndex.setText(str[i]);	
-                   }
-               	if(i==51){
-                       str[i]=line;
-                   rainRate.setText(str[i]);	
+               	if(i==0){
+                   str[i]=line;
+                   rainRate.setText(dati[79]);
                    }
                	
                	
@@ -236,6 +238,7 @@ public class Estremi extends Activity {
                	line = in.readLine(); // legge la prossima riga 
                	} 
                in.close();
+        	   umidita.setText("ND");
                ventoDir.setText("ND");
                pioggia.setText("ND");
                Intestazione.setText("Estremi massimi mensili"); 
@@ -243,25 +246,21 @@ public class Estremi extends Activity {
            if(string =="min_anno"){
         	   
                while (line != null){
-               	if(i==0){
-               	str[i]=line;
-                   data.setText(str[i]);	
-               	}
-               	if(i==54){
-               	str[i]=line;
-                   temperatura.setText(str[i]);	
-               	}
-               	if(i==56){
-                   str[i]=line;
-                   umidita.setText(str[i]);	
-                   }
-               	if(i==61){
+                   if(i==0){
                        str[i]=line;
-                   pressione.setText(str[i]);	
+                       data.setText("Agg alle "+dati2[29]+":"+dati2[30]+" del "+dati2[74]);
                    }
-               	if(i==58){
+                   if(i==0){
                        str[i]=line;
-                   dewpoint.setText(str[i]);	
+                       temperatura.setText(dati[193]);
+                   }
+                   if(i==0){
+                       str[i]=line;
+                       pressione.setText(dati[217]);
+                   }
+                   if(i==0){
+                       str[i]=line;
+                       dewpoint.setText(dati[747]);
                    }
                	
                	
@@ -280,37 +279,35 @@ public class Estremi extends Activity {
            if(string =="max_anno"){
         	   
                while (line != null){
-               	if(i==0){
-               	str[i]=line;
-                   data.setText(str[i]);	
-               	}
-               	if(i==53){
-               	str[i]=line;
-                   temperatura.setText(str[i]);	
-               	}
-               	if(i==55){
-                   str[i]=line;
-                   umidita.setText(str[i]);	
-                   }
-               	if(i==60){
+                   if(i==0){
                        str[i]=line;
-                   pressione.setText(str[i]);	
+                       data.setText("Agg alle "+dati2[29]+":"+dati2[30]+" del "+dati2[74]);
                    }
-               	if(i==59){
+                   if(i==0){
                        str[i]=line;
-                   ventom.setText(str[i]);	
+                       temperatura.setText(dati[187]);
                    }
-               	if(i==57){
+                   if(i==0){
                        str[i]=line;
-                   dewpoint.setText(str[i]);	
+                       pressione.setText(dati[211]);
                    }
-               	if(i==63){
+                   if(i==0){
                        str[i]=line;
-                   heatIndex.setText(str[i]);	
+                       Double ventonodi=Double.parseDouble(dati[199]);
+                       ventonodi=ventonodi*1.852;
+                       ventom.setText(String.valueOf(String.format("%.2f", ventonodi)));
                    }
-               	if(i==64){
+                   if(i==0){
                        str[i]=line;
-                   rainRate.setText(str[i]);	
+                       dewpoint.setText(dati[741]);
+                   }
+                   if(i==0){
+                       str[i]=line;
+                       heatIndex.setText(dati[301]);
+                   }
+                   if(i==0){
+                       str[i]=line;
+                       rainRate.setText(dati[205]);
                    }
                	
                	
@@ -325,25 +322,21 @@ public class Estremi extends Activity {
            if(string =="min_ass"){
         	   
                while (line != null){
-               	if(i==0){
-               	str[i]=line;
-                   data.setText(str[i]);	
-               	}
-               	if(i==67){
-               	str[i]=line;
-                   temperatura.setText(str[i]);	
-               	}
-               	if(i==69){
-                   str[i]=line;
-                   umidita.setText(str[i]);	
-                   }
-               	if(i==74){
+                   if(i==0){
                        str[i]=line;
-                   pressione.setText(str[i]);	
+                       data.setText("Agg alle "+dati2[29]+":"+dati2[30]+" del "+dati2[74]);
                    }
-               	if(i==71){
+                   if(i==0){
                        str[i]=line;
-                   dewpoint.setText(str[i]);	
+                       temperatura.setText(dati[319]);
+                   }
+                   if(i==0){
+                       str[i]=line;
+                       pressione.setText(dati[337]);
+                   }
+                   if(i==0){
+                       str[i]=line;
+                       dewpoint.setText(dati[759]);
                    }
                	
                	
@@ -362,37 +355,35 @@ public class Estremi extends Activity {
            if(string =="max_ass"){
         	   
                while (line != null){
-               	if(i==0){
-               	str[i]=line;
-                   data.setText(str[i]);	
-               	}
-               	if(i==66){
-               	str[i]=line;
-                   temperatura.setText(str[i]);	
-               	}
-               	if(i==68){
-                   str[i]=line;
-                   umidita.setText(str[i]);	
-                   }
-               	if(i==73){
+                   if(i==0){
                        str[i]=line;
-                   pressione.setText(str[i]);	
+                       data.setText("Agg alle "+dati2[29]+":"+dati2[30]+" del "+dati2[74]);
                    }
-               	if(i==72){
+                   if(i==0){
                        str[i]=line;
-                   ventom.setText(str[i]);	
+                       temperatura.setText(dati[313]);
                    }
-               	if(i==70){
+                   if(i==0){
                        str[i]=line;
-                   dewpoint.setText(str[i]);	
+                       pressione.setText(dati[343]);
                    }
-               	if(i==76){
+                   if(i==0){
                        str[i]=line;
-                   heatIndex.setText(str[i]);	
+                       Double ventonodi=Double.parseDouble(dati[325]);
+                       ventonodi=ventonodi*1.852;
+                       ventom.setText(String.valueOf(String.format("%.2f", ventonodi)));
                    }
-               	if(i==77){
+                   if(i==0){
                        str[i]=line;
-                   rainRate.setText(str[i]);	
+                       dewpoint.setText(dati[753]);
+                   }
+                   if(i==0){
+                       str[i]=line;
+                       heatIndex.setText(dati[427]);
+                   }
+                   if(i==0){
+                       str[i]=line;
+                       rainRate.setText(dati[331]);
                    }
                	
                	
